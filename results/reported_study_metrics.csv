@@ -1,0 +1,9 @@
+metric,baseline,extended,unit,notes
+proteins_covered,596,609,proteins,of_741_protein_panel
+top2_selected_peptides,1087,1129,peptides,candidate_lists
+top3_selected_peptides,1493,1563,peptides,candidate_lists
+predicted_rt30_top3_peptides,,32,peptides,observed_only_in_60min_data
+rt_transfer_mae,0.333,,minutes,validated_on_4033_common_peptides
+rt_transfer_rmse,0.424,,minutes,validated_on_4033_common_peptides
+rt_transfer_absolute_error_p95,0.894,,minutes,validated_on_4033_common_peptides
+rt_transfer_r2,0.997,,unitless,validated_on_4033_common_peptides
