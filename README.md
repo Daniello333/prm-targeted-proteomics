@@ -1,5 +1,7 @@
 # Targeted proteomics PRM planning — MSc research methods
 
+[![R helper checks](https://github.com/Daniello333/prm-targeted-proteomics/actions/workflows/test.yml/badge.svg)](https://github.com/Daniello333/prm-targeted-proteomics/actions/workflows/test.yml)
+
 > **Publication status:** Runnable R helper-method excerpt from a five-stage MSc research workflow. This repository is **not yet the entire peptide-selection / PRM scheduling pipeline**.
 
 This project develops a computational workflow to propose peptide precursor lists for **parallel reaction monitoring (PRM)**, based on DIA-NN evidence, peptide sequence constraints, precursor properties and chromatographic retention-time information.
