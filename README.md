@@ -39,6 +39,8 @@ Rscript test_selected_prm_methods.R
 
 The exported iRT-transfer validation reports **MAE 0.333 min** and **RMSE 0.424 min**. These results are from the complete thesis analyses, **not recomputed by the standalone excerpt**.
 
+The transcribed numbers are also available as [CSV](results/reported_study_metrics.csv), with a [provenance note](results/README.md). They are not reproduced by the excerpt source code.
+
 ## Reproducibility and data note
 
 - Full reproduction requires the five complete research stages, original target-panel FASTA, DIA-NN outputs and other experiment-specific metadata.
