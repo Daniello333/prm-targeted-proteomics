@@ -1,0 +1,11 @@
+.Rhistory
+.RData
+.Rproj.user/
+.env
+*.parquet
+*.raw
+*.mzML
+*.mzXML
+*.speclib
+*.h5ad
+*.pkl
