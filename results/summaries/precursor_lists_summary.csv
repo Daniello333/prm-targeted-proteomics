@@ -1,0 +1,5 @@
+﻿"Typ_listy";"Wariant";"Liczba_bialek";"Liczba_peptydow";"RT30_obserwowany";"RT30_przewidywany";"Jakosc_z_30min";"Jakosc_z_60min";"Bialka_dodane_wzgledem_bazy"
+"Top 2";"Bazowa ETAP 03";"596";"1087";"1087";"0";"1087";"0";"0"
+"Top 2";"Rozszerzona ETAP 05";"609";"1129";"1110";"19";"1087";"42";"13"
+"Top 3";"Bazowa ETAP 03";"596";"1493";"1493";"0";"1493";"0";"0"
+"Top 3";"Rozszerzona ETAP 05";"609";"1563";"1531";"32";"1493";"70";"13"

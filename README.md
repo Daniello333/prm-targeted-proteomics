@@ -1,51 +1,57 @@
-# Targeted proteomics PRM planning — MSc research methods
+# PRM target list planning from DIA proteomics — MSc research
 
-[![R helper checks](https://github.com/Daniello333/prm-targeted-proteomics/actions/workflows/test.yml/badge.svg)](https://github.com/Daniello333/prm-targeted-proteomics/actions/workflows/test.yml)
+**Bioinformatics MSc research project · R · LC–MS/MS · DIA-NN · targeted proteomics**
 
-> **Publication status:** Runnable R helper-method excerpt from a five-stage MSc research workflow. This repository is **not yet the entire peptide-selection / PRM scheduling pipeline**.
+An R workflow for selecting **protein-specific peptides and precursor candidates** for parallel reaction monitoring (PRM), integrating in-silico proteolytic digestion, DIA-derived identification evidence, fragment-ion quality and chromatographic retention-time information. Analysis targeted a **741-protein Homo sapiens panel**.
 
-This project develops a computational workflow to propose peptide precursor lists for **parallel reaction monitoring (PRM)**, based on DIA-NN evidence, peptide sequence constraints, precursor properties and chromatographic retention-time information.
+> **Scope:** Research pipeline from a completed academic analysis. The source DIA-NN reports and input FASTA/panel files are *not* included; a full rerun requires the external files listed below. Numerical results shown here were verified against the provided exported result tables, not independently recomputed from the original DIA input.
 
-## Research workflow (broader MSc project)
+## Pipeline
 
-1. In-silico digestion of the target-protein FASTA panel and peptide uniqueness checks
-2. Filtering and ranking by identification evidence and fragment-ion scores from DIA-NN results
-3. Selection of Top 2 / Top 3 precursor candidates per protein
-4. Retention-window crowding assessment and alternative-peptide selection
-5. iRT-based 60-minute to 30-minute gradient retention-time transfer and list extension
+| Stage | Script | Main purpose |
+| --- | --- | --- |
+| 1 | [`01_przygotowanie_fasta_i_trawienie_in_silico.R`](scripts/01_przygotowanie_fasta_i_trawienie_in_silico.R) | FASTA preparation, Trypsin/Lys-C digestion comparison, unique peptide candidates and ragged-end filters |
+| 2 | [`02_kryteria_doswiadczalne_DIA_NN.R`](scripts/02_kryteria_doswiadczalne_DIA_NN.R) | Merge candidates with DIA-NN results, apply experimental criteria and score fragment evidence |
+| 3 | [`03_listy_peptydowo_prekursorowe.R`](scripts/03_listy_peptydowo_prekursorowe.R) | Assemble candidate Top 2 / Top 3 precursor lists |
+| 4 | [`04_okna_retencji_i_propozycje_zamian.R`](scripts/04_okna_retencji_i_propozycje_zamian.R) | Quantify chromatographic co-elution / window congestion and evaluate controlled peptide substitutions |
+| 5 | [`05_kalibracja_iRT_i_listy_rozszerzone.R`](scripts/05_kalibracja_iRT_i_listy_rozszerzone.R) | Calibrate iRT between 60- and 30-minute gradients; expand candidate lists |
 
-## Code currently published
+## Selected results
 
-| File | Purpose |
-| --- | --- |
-| [`selected_prm_methods.R`](selected_prm_methods.R) | Trypsin/Lys-C sequence cleavage (as implemented in the thesis), peptide neutral masses with fixed cysteine carbamidomethylation, precursor m/z calculations and iRT transfer |
-| [`test_selected_prm_methods.R`](test_selected_prm_methods.R) | Base-R checks for these standalone helpers |
+The reported experimental filters and fragment evidence identified **596 of 741 panel proteins** for the baseline 30-minute list. Integration of additional 60-minute data increased the coverage to **609 proteins**, i.e. **13 additional proteins**.
 
-### Quick start
+| List | Baseline peptides | Extended peptides | Proteins baseline → extended |
+| --- | ---: | ---: | --- |
+| Top 2 | 1,087 | 1,129 | 596 → 609 |
+| Top 3 | 1,493 | 1,563 | 596 → 609 |
 
-Requires R (base installation).
+For the extended **Top 3** list, **32** added peptides relied on predicted 30-minute retention times (genuinely absent from the 30-minute detections), while **38** had observed 30-minute RT and usable quality evidence from the 60-minute data.
 
-```bash
-Rscript test_selected_prm_methods.R
-```
+The iRT transfer validation on **4,033 shared panel peptides** reported **MAE 0.3328 min**, **RMSE 0.4235 min**, **95th-percentile absolute error 0.8943 min**, and **R² 0.9970**. This is a within-data transfer validation and is **not** proof of performance on other chromatographic systems.
 
-## Reported study results
+![Observed vs predicted retention time](results/figures/rt_predicted_vs_observed.png)
 
-| Candidate coverage | Initial candidate lists | iRT-extended lists |
-| --- | ---: | ---: |
-| Proteins with selected precursors | 596 | 609 |
-| Top 2 peptides | 1,087 | 1,129 |
-| Top 3 peptides | 1,493 | 1,563 |
+![Baseline versus extended candidate lists](results/figures/precursor_list_coverage.png)
 
-The exported iRT-transfer validation reports **MAE 0.333 min** and **RMSE 0.424 min**. These results are from the complete thesis analyses, **not recomputed by the standalone excerpt**.
+See reproducible summary outputs in [`results/summaries/`](results/summaries/) and plots in [`results/figures/`](results/figures/). The source exports contain Polish column names and decimal commas.
 
-The transcribed numbers are also available as [CSV](results/reported_study_metrics.csv), with a [provenance note](results/README.md). They are not reproduced by the excerpt source code.
+## Environment and execution
 
-## Reproducibility and data note
+**R packages:** `tidyverse`, `readxl`, `openxlsx`, `ggplot2`, `arrow`, `scales`. The code expects external files in a working directory and automatically locates prior stage outputs in that area.
 
-- Full reproduction requires the five complete research stages, original target-panel FASTA, DIA-NN outputs and other experiment-specific metadata.
-- Large experimental inputs and institution-owned data should not be published without permission.
-- The generated candidate lists still require instrument-method review and experimental validation; they are **not** validated PRM assays.
-- The larger project is described in the [MSc research case study](https://github.com/Daniello333/Daniello333/blob/main/projects/prm-proteomics.md).
+Required inputs (not bundled):
 
-**Author:** Daniel Drabik · Jagiellonian University · [Portfolio](https://github.com/Daniello333)
+1. Human reference proteome FASTA with technical iRT standards;
+2. Excel file containing the 741-protein target panel;
+3. Four DIA-NN `--export-quant` reports in Parquet format: two 30-minute measurements and two 60-minute runs.
+
+From a properly populated project working directory, execute scripts **01 → 02 → 03 → 04 → 05**. Consult [`docs/README.txt`](docs/README.txt) and [`docs/WEJSCIA_DO_PIPELINE.txt`](docs/WEJSCIA_DO_PIPELINE.txt) for original Polish file names and expected inputs. The scripts have not been independently rerun in this portfolio snapshot because input datasets were not provided.
+
+## Research limitations
+
+- Not every panel protein was detectable under the selected experimental conditions and filters; **609 / 741** is list coverage, not an assay-level sensitivity estimate.
+- Retention-time prediction supports scheduling candidate measurements but does **not** replace instrument method review and validation in Skyline.
+- The 95th-percentile RT error is an approximate guide, **not** a validated scheduled-PRM window.
+- Large raw/processed datasets are omitted intentionally; obtain appropriate rights and permissions before any release of full experimental data.
+
+**Author:** Daniel Drabik · Jagiellonian University · Master's research.

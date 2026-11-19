@@ -1,0 +1,15 @@
+PLIKI WEJŚCIOWE DO PONOWNEGO URUCHOMIENIA PIPELINE'U
+
+1. 2025_11_19_homo_sapiens_20663_UP000005640_9606_iRT.fasta
+2. ALL_candidates_741.xlsx
+3. report_2025_30_min_export_quant_added.parquet
+4. report_2026_30_min_export_quant_added.parquet
+5. report_2025_60_min_r1_export_quant_added.parquet
+6. report_2025_60_min_r2_export_quant_added.parquet
+
+To jest kompletny zestaw zewnętrznych plików potrzebnych do uruchomienia
+skryptów 01-05 od początku. Wyniki etapów 01-03 są następnie automatycznie
+wykorzystywane przez kolejne skrypty.
+
+RAW i mzML nie są odczytywane przez te skrypty R; są wejściem do wcześniejszego
+przetwarzania w DIA-NN.

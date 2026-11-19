@@ -1,0 +1,7 @@
+﻿"Zakres_analizy";"Typ_listy";"Wariant";"Liczba_bialek";"Liczba_peptydow";"Maks_okno_1min";"Maks_pm1";"Maks_empiryczne";"Suma_kwadratow_okien_1min";"Suma_pm1";"Suma_empiryczne"
+"Cała FASTA";"Top 2";"Lista bazowa";"10337";"19461";"990";"2007";"497";"15433427";"30808431";"5052257"
+"Cała FASTA";"Top 3";"Lista bazowa";"10337";"27683";"1347";"2731";"670";"30664153";"61216699";"10032357"
+"Panel 741";"Top 2";"Lista bazowa";"596";"1087";"62";"124";"29";"48553";"96163";"16061"
+"Panel 741";"Top 3";"Lista bazowa";"596";"1493";"78";"158";"41";"91163";"180955";"30149"
+"Panel 741";"Top 2";"Po kontrolowanych propozycjach";"596";"1087";"59";"123";"29";"48287";"95663";"15949"
+"Panel 741";"Top 3";"Po kontrolowanych propozycjach";"596";"1493";"77";"156";"41";"90685";"180009";"29889"

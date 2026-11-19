@@ -1,0 +1,3 @@
+﻿"Zakres";"N_peptydow";"Blad_sredni_min";"Blad_mediana_min";"MAE_min";"RMSE_min";"Blad_abs_90_percentyl_min";"Blad_abs_95_percentyl_min";"R2_obserwowany_vs_przewidywany"
+"Cała FASTA human-only po PEP i fragmentach";"86819";"0,220632838732499";"0,181370850478668";"0,335097943246341";"0,430969423147554";"0,749334344589973";"0,928606828853954";"0,996822569359513"
+"Panel 741 po PEP i fragmentach";"4033";"0,235871766491346";"0,210796554728041";"0,332847873333944";"0,423507484054819";"0,695057850835743";"0,894331038589632";"0,996972790091534"

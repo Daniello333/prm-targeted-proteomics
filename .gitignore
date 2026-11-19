@@ -1,11 +1,13 @@
-.Rhistory
-.RData
-.Rproj.user/
-.env
+# Source DIA-NN reports, research input data, outputs and temporary files
 *.parquet
 *.raw
 *.mzML
-*.mzXML
 *.speclib
-*.h5ad
-*.pkl
+*.RData
+*.Rhistory
+.Rproj.user/
+*.log
+*.tmp
+/data/
+/outputs/
+/inputs/

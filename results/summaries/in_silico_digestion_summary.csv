@@ -1,0 +1,5 @@
+﻿"Wariant";"Bialka_w_FASTA";"Bialka_z_min_1_peptydem_unikatowym";"Bialka_bez_peptydu_unikatowego";"Peptydy_unikatowe";"Pokrycie_FASTA_proc";"Panel_bialka_z_min_1_peptydem";"Panel_bialka_bez_peptydu";"Panel_peptydy_unikatowe";"Pokrycie_panelu_proc"
+"Trypsyna, 0 DPMC";"20663";"19837";"826";"336842";"96,0025";"739";"2";"14610";"99,7301"
+"Trypsyna, 1 DPMC po filtrze ragged";"20663";"20044";"619";"781780";"97,0043";"740";"1";"34123";"99,8650"
+"LysC, 0 DPMC";"20663";"18473";"2190";"179541";"89,4013";"724";"17";"8439";"97,7058"
+"LysC, 1 DPMC";"20663";"18739";"1924";"353613";"90,6887";"726";"15";"16635";"97,9757"
